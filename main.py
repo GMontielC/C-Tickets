@@ -1,12 +1,13 @@
 from typing import Union
 
-from fastapi import Depends, FastAPI, HTTPException
+from fastapi import Depends, FastAPI, HTTPException, Request, File, UploadFile
 from Preferencias import *
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from pydantic import BaseModel
 from passlib.context import CryptContext
 from datetime import datetime, timedelta
 from jose import jwt, JWTError
+from event_Model import event
 
 fake_user_db = {
     "johndoe": {
@@ -111,3 +112,13 @@ def login(form_data: OAuth2PasswordRequestForm = Depends()):
         "access_token": access_token_jwt,
         "token_type": "bearer"
     }
+
+@app.post("/events")
+async def get_data(request: Request,evento: event):
+   
+    #Waits for the request and converts into JSON
+    result = await request.json()  
+   
+    #Prints result in cmd – verification purpose
+    print(result)
+    return result
