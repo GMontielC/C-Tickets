@@ -114,7 +114,7 @@ def login(form_data: OAuth2PasswordRequestForm = Depends()):
     }
 
 @app.post("/events")
-async def get_data(request: Request,evento: event):
+async def get_data(request: Request):
    
     #Waits for the request and converts into JSON
     result = await request.json()  
