@@ -119,16 +119,7 @@ async def get_data(request: Request):
     #Waits for the request and converts into JSON
     result = await request.json()  
     
-    for item in result:
-    # Imprimir cada objeto JSON
-        print("id_evento:",item["id_evento"],
-            "category:",item["category"],
-            "date:",item["date"],
-            "image:",item["image"],
-            "name:",item["name"],
-            "meta:",item["meta"],
-            "meta2:",item["meta2"],
-            "descrpcion:",item["descripcion"],
-            "Precios:",item["Precios"])
+    for key, value in result.items():
+        print(f"{key}: {value}")
 
     return result
